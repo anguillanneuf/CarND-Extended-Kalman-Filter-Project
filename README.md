@@ -1,5 +1,5 @@
 # Extended Kalman Filter with Google Cloud Pub/Sub
-This project was originally homework from the [Udacity Self-Driving Car Engineer Nanodegree] Program. I re-purposed it for a [Medium article] to show how to use [Pub/Sub] with Kalman Filters.
+This project was originally completed in 2017 as part of the [Udacity Self-Driving Car Engineer Nanodegree] Program. I re-purposed it for a [Medium article] to show how to use [Pub/Sub] with Kalman Filters.
 
 ---
 
@@ -70,10 +70,9 @@ This project was originally homework from the [Udacity Self-Driving Car Engineer
 ## Build Instructions
 
 1. Clone this repo.
-1. Make a new CMake Project.
+1. Create a new CMake Project.
    - CLion:
-     - Go to Files > New CMake Project from Sources.
-       ![img](pics/sources.png)
+     - Go to `Files > New CMake Project from Sources`. Select the repo you just downloaded. Choose "Import as a new CMkae project". Then select the `src` directory. Click `OK`.
      - Install `google-cloud-cpp` using [vcpkg]. 
        ```shell script
        cd $HOME/vcpkg
@@ -84,15 +83,18 @@ This project was originally homework from the [Udacity Self-Driving Car Engineer
          ```shell script
          cmake -H. -B.build -DCMAKE_TOOLCHAIN_FILE=$HOME/vcpkg/scripts/buildsystems/vcpkg.cmake
          ```
-       - Using the UI: ![img](pics/cmake.png)
+       - Using the UI:
+         ![img](pics/cmake.png)
 1. Compile: `cmake --build .build`
 1. Publish some messages with an ordering key.
 
    ```shell script
-   # Publishes messages synchronously (slow way).
+   # Publishes messages synchronously (the slow way).
+   # Replace `your-topic-id` with your Pub/Sub topic ID. 
    ./publish.sh
    
-   # Publishes messages asynchronously (fast way)
+   # Publishes messages asynchronously (the fast way)
+   # Update the script with your GCP project and Pub/Sub topic ID.
    python publish_data.py
    ```
 1. Run the EKF: `./ExtendedKF your-project-id your-subscription-id`
@@ -119,14 +121,9 @@ The README should explain what the profile does, how to take advantage of it, an
 [Udacity Self-Driving Car Engineer Nanodegree]: https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd013
 [Medium article]: https://medium.com/@anguillanneuf/about
 [Pub/Sub]: https://cloud.google.com/pubsub/docs
-
 [Cloud SDK]: https://cloud.google.com/sdk/docs
 [Cloud Shell]: https://console.cloud.google.com/cloudshell/editor/
 [*New Project*]: https://console.cloud.google.com/projectcreate
 [Enable billing]: https://cloud.google.com/billing/docs/how-to/modify-project/
 [*Create service account key*]: https://console.cloud.google.com/apis/credentials/serviceaccountkey/
-[GCP Console IAM page]: https://console.cloud.google.com/iam-admin/iam/
-[Granting roles to service accounts]: https://cloud.google.com/iam/docs/granting-roles-to-service-accounts/
-[Creating and managing service accounts]: https://cloud.google.com/iam/docs/creating-managing-service-accounts/
-
 [vcpkg]: https://github.com/Microsoft/vcpkg.git

@@ -95,18 +95,18 @@ int main(int argc, char* argv[]) try {
           // Predict and update.
           fusionEKF.ProcessMeasurement(meas_package);
 
-          cout << "PREDICTION: ";
+          cout << "\nPREDICTION: ";
           cout << fusionEKF.ekf_.x_(0) << "\t";
           cout << fusionEKF.ekf_.x_(1) << "\t";
           cout << fusionEKF.ekf_.x_(2) << "\t";
-          cout << fusionEKF.ekf_.x_(3) << "\t\n";
+          cout << fusionEKF.ekf_.x_(3) << "\t";
 
           rmse = tools.CalculateRMSEContinuous(fusionEKF.ekf_.x_,
                                                gt_package.gt_values_,
                                                rmse,
                                                message_count);
 
-          cout << "ACCURACY - RMSE: ";
+          cout << "\nACCURACY - RMSE: ";
           cout << rmse(0) << "\t";
           cout << rmse(1) << "\t";
           cout << rmse(2) << "\t";

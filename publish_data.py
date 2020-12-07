@@ -15,7 +15,7 @@ lines = file.readlines()
 
 futures = []
 for line in lines:
-    future = publisher.publish(topic_path, data=line.encode("utf-8"), ordering_key="demo")
+    future = publisher.publish(topic_path, data=line.encode("utf-8"), ordering_key="kf")
     futures.append(future)
 
 for future in futures:
