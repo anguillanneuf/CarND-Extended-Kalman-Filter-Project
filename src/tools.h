@@ -2,6 +2,15 @@
 #define TOOLS_H_
 #include <vector>
 #include "Eigen/Dense"
+#include "ground_truth_package.h"
+#include "measurement_package.h"
+
+struct packages {
+  MeasurementPackage meas;
+  GroundTruthPackage gt;
+};
+
+typedef struct packages Struct;
 
 class Tools {
  public:
@@ -33,6 +42,10 @@ class Tools {
                                           const Eigen::VectorXd& ground_truth,
                                           const Eigen::VectorXd& rmse,
                                           const int count);
+  /**
+  * A helper method to preprocess measurement and ground truth packages.
+  */
+  Struct PreprocessPackages(std::string data);
 
 };
 

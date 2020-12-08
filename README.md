@@ -73,7 +73,7 @@ This project was originally completed in 2017 as part of the [Udacity Self-Drivi
 1. Create a new CMake Project.
    - CLion:
      - Go to `Files > New CMake Project from Sources`. Select the repo you just downloaded. Choose "Import as a new CMkae project". Then select the `src` directory. Click `OK`.
-     - Install `google-cloud-cpp` using [vcpkg]. 
+     - Install `google-cloud-cpp` using [vcpkg]. Additional step for MacOS and Windows in Pub/Sub setup. 
        ```shell script
        cd $HOME/vcpkg
        ./vcpkg install google-cloud-cpp
@@ -84,6 +84,7 @@ This project was originally completed in 2017 as part of the [Udacity Self-Drivi
          cmake -H. -B.build -DCMAKE_TOOLCHAIN_FILE=$HOME/vcpkg/scripts/buildsystems/vcpkg.cmake
          ```
        - Using the UI:
+       
          ![img](pics/cmake.png)
 1. Compile: `cmake --build .build`
 1. Publish some messages with an ordering key.

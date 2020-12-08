@@ -74,3 +74,56 @@ VectorXd Tools::CalculateRMSEContinuous(const Eigen::VectorXd& estimations,
 
   return (sum.array() / (message_count + 1)).sqrt();
 }
+
+Struct Tools::PreprocessPackages(std::string data) {
+  Struct packages;
+
+  std::string a(data);
+  std::istringstream iss(a);
+
+  std::string sensor_type;
+  iss >> sensor_type;
+  long timestamp;
+
+  if (sensor_type.compare("L") == 0) {
+    // LASER MEASUREMENT
+
+    packages.meas.sensor_type_ = MeasurementPackage::LASER;
+    packages.meas.raw_measurements_ = VectorXd(2);
+    float x;
+    float y;
+    iss >> x;
+    iss >> y;
+    packages.meas.raw_measurements_ << x, y;
+    iss >> timestamp;
+    packages.meas.timestamp_ = timestamp;
+
+  } else if (sensor_type.compare("R") == 0) {
+    // RADAR MEASUREMENT
+
+    packages.meas.sensor_type_ = MeasurementPackage::RADAR;
+    packages.meas.raw_measurements_ = VectorXd(3);
+    float ro;
+    float phi;
+    float ro_dot;
+    iss >> ro;
+    iss >> phi;
+    iss >> ro_dot;
+    packages.meas.raw_measurements_ << ro, phi, ro_dot;
+    iss >> timestamp;
+    packages.meas.timestamp_ = timestamp;
+  }
+  // Read ground truth data.
+  float x_gt;
+  float y_gt;
+  float vx_gt;
+  float vy_gt;
+  iss >> x_gt;
+  iss >> y_gt;
+  iss >> vx_gt;
+  iss >> vy_gt;
+  packages.gt.gt_values_ = VectorXd(4);
+  packages.gt.gt_values_ << x_gt, y_gt, vx_gt, vy_gt;
+
+  return packages;
+}
