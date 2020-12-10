@@ -120,7 +120,7 @@ If you've created a profile for an IDE that you think others would appreciate, a
 The README should explain what the profile does, how to take advantage of it, and how to install it.
 
 [Udacity Self-Driving Car Engineer Nanodegree]: https://www.udacity.com/course/self-driving-car-engineer-nanodegree--nd013
-[Medium article]: https://medium.com/@anguillanneuf/about
+[Medium article]: https://medium.com/google-cloud/kalman-filters-pub-sub-and-birdwatching-70d6058039be
 [Pub/Sub]: https://cloud.google.com/pubsub/docs
 [Cloud SDK]: https://cloud.google.com/sdk/docs
 [Cloud Shell]: https://console.cloud.google.com/cloudshell/editor/
